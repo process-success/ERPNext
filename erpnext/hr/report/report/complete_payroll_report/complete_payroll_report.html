@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" media="screen" href="/home/noelia/frappe-bench/apps/costal_range_wineyards_management/costal_range_wineyards_management/costal_range_wineyards_management/report/complete_payroll_report/custom.css"/>
+</head>
+<body>
+
+<h2>Complete Payroll Report</h2>
+<h4>For the period of {%= filters.from %} to {%= filters.end %}</h4>
+{%if (data.length > 0) { %}
+<p>Name: {%= data[0].last_name %}</p>
+{% } %}
+
+<table>
+		<tr>
+			<th>Week</th>
+			<th>D</th>
+			<th>Date In</th>
+			<th>Time In</th>
+			<th>Date Out</th>
+			<th>Time Out</th>
+			<th>Job Code</th>
+			<th>Break</th>
+			<th>Hours</th>
+			<th>Reg</th>
+			<th>Ovt1</th>
+			<th>Ovt2</th>
+			<th>Day Total</th>
+		</tr>
+		
+	
+		{% var prev = "";
+		for(var j=0, k=data.length; j<k; j++){ 
+		%}
+			<tr>
+				<th>{%= data[j].week %}</th>
+				<th>{%= data[j].weekday %}</th>
+				<th>{%= data[j].time_in.split(" ")[0] %}</th>
+				<th>{%= data[j].time_in.split(" ")[1] %}</th>
+				<th>{%= data[j].time_out.split(" ")[0] %}</th>
+				<th>{%= data[j].time_out.split(" ")[1] %}</th>
+				<th>{%= data[j].job_code %}</th>
+				<th>{%= data[j].break %}</th>
+				<th>{%= data[j].Hours %}</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>{%= data[j].Day_Total %}</th>	
+				{%
+					prev = data[j].time_out;
+					
+				%}
+			</tr>
+		{% } %}
+</table>
+</body>
+</html>
